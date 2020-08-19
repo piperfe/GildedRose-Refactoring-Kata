@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class GildedRoseShould {
 
 
-    // AgeBrie
+    // AgedBrie
     @Test
     void when_item_name_is_AgedBrie_and_quality_is_lt_50_then_should_decrease_sellIn_and_increase_quality_in_1() {
         Item[] items = {new Item("Aged Brie", 10, 40)};
@@ -83,6 +83,30 @@ class GildedRoseShould {
         assertEquals(-2, gildedRose.items[0].sellIn);
     }
 
+    @Test
+    void when_item_is_Backstage_and_sellIn_is_between_7_and_10_and_quality_lte_48_should_increase_queality_in_2_and_decreases_sellIn_in_1(){
+        Item[] items = { new Item("Backstage passes to a TAFKAL80ETC concert",7, 48)};
+
+        GildedRose gildedRose = new GildedRose(items);
+
+        gildedRose.updateQuality();
+
+        assertEquals(50, gildedRose.items[0].quality);
+        assertEquals(6, gildedRose.items[0].sellIn);
+    }
+
+
+    //Sulfuras
+    @Test
+    void when_item_is_Sulfuras_then_should_maintain_quality_and_sellIn(){
+        Item[] items = {new Item("Sulfuras, Hand of Ragnaros", 10, -1)};
+        GildedRose gildedRose = new GildedRose(items);
+
+        gildedRose.updateQuality();
+
+        assertEquals(10, gildedRose.items[0].sellIn);
+        assertEquals(-1, gildedRose.items[0].quality);
+    }
 
 
     // Unknown
